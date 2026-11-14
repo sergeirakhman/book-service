@@ -24,7 +24,6 @@ export const addBook = async (book) => {
     }
     // Create a new Book
     book = await bookRepository.addBook({isbn, title, publisher: book.publisher});
-    console.log('!!!^ ', book);
     await book.setAuthors(authors);
 }
 

@@ -14,8 +14,8 @@ import {
 const router = Router();
 
 router.post('/book', addBook);
-router.get('/book/:ISBN', findBookByISBN);
-router.delete('/book/:ISBN', removeBook);
+router.get('/book/:isbn', findBookByISBN);
+router.delete('/book/:isbn', removeBook);
 router.patch('/book/:ISBN/title/:title', updateBookTitle);
 router.get('/books/author/:author', findBooksByAuthor);
 router.get('/books/publisher/:publisher', findBooksByPublisher);

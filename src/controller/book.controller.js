@@ -20,6 +20,7 @@ export const findBookByISBN = async (req, res, next) => {
 
 export const removeBook = async (req, res, next) => {
     try {
+        console.log(req.params.isbn)
         const book = await bookService.removeBook(req.params.isbn);
         return res.json(book);
     } catch (err) {
