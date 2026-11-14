@@ -1,19 +1,30 @@
 import * as bookService from '../service/book service.js'
 
-export const addBook = async (req, res) => {
-    const book = await bookService.addBook(req.body);
-
-    book ? res.status(200).send() : res.status(404).send();
+export const addBook = async (req, res, next) => {
+    try {
+        await bookService.addBook(req.body);
+        return res.sendStatus(201);
+    } catch (err) {
+        return next(err);
+    }
 }
 
-export const findBookByISBN = async (req, res) => {
-    const book = await bookService.findBookByISBN(req.params.ISBN);
-    book ? res.status(200).send(book) : res.status(404).send();
+export const findBookByISBN = async (req, res, next) => {
+    try {
+        const book = await bookService.findBookByISBN(req.params.isbn);
+        return res.json(book);
+    } catch (err) {
+        return next(err);
+    }
 }
 
-export const removeBook = async (req, res) => {
-    const book = await bookService.removeBook(req.params.ISBN);
-    book ? res.status(200).send(book) : res.status(404).send();
+export const removeBook = async (req, res, next) => {
+    try {
+        const book = await bookService.removeBook(req.params.isbn);
+        return res.json(book);
+    } catch (err) {
+        return next(err);
+    }
 }
 
 export const updateBookTitle = async (req, res) => {
